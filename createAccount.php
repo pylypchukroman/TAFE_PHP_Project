@@ -30,7 +30,38 @@
     <main>
         <h1>Create account</h1>
         <?php
-        //place code here to create account
+            $username = $_POST['username'];
+            $password = $_POST['password'];
+            $lines = file("accounts.txt");
+            $isUserExist = false;
+
+            foreach ($lines as $line) {
+                $userData = explode(",", $line);
+                if($userData[0] == $username) {
+                    $isUserExist = true;
+                }
+            }
+
+            if ($username == "" || $password == "") {
+                header("Location: register.php?error=emptyfields");
+                exit();
+            }
+
+            if (strlen($password) < 10) {
+                header("Location: register.php?error=shortpassword");
+                exit();
+            }
+
+            if ($isUserExist) {
+                header("Location: register.php?error=userexist");
+                exit();
+            }
+
+            $file = fopen("accounts.txt", "a");
+            fwrite($file, $username . "," . $password . "\n");
+            fclose($file);
+
+            echo "Your account has been created!";
         
         ?>
     </main>

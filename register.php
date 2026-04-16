@@ -40,6 +40,27 @@
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password">
             </div>
+
+            <?php
+            if (isset($_GET["error"])) {
+                if ($_GET["error"] == "emptyfields") {
+                    echo "Please fill in all fields.<br>";
+                }
+            }
+
+            if (isset($_GET["error"])) {
+                if ($_GET["error"] == "shortpassword") {
+                    echo "Password must be at least 8 characters long.<br>";
+                }
+            }
+
+            if (isset($_GET["error"])) {
+                if ($_GET["error"] == "userexist") {
+                    echo "User with this email already exist.<br>";
+                }
+            }
+            ?>
+
             <div>
                 <button type="submit" name="register">REGISTER</button>
             </div>

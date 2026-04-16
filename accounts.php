@@ -30,7 +30,14 @@
     <main>
         <h1>Current accounts</h1>
         <?php
-        //place code here to display accounts
+            $lines = file("accounts.txt", FILE_IGNORE_NEW_LINES);
+
+            foreach ($lines as $line) {
+                $data = explode(",", $line);
+                $username = $data[0];
+
+                echo "<p>$username</p>";
+            }
         
         ?>
     </main>

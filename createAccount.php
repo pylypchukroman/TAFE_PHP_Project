@@ -62,7 +62,6 @@
             fclose($file);
 
             echo "Your account has been created!";
-        
         ?>
     </main>
     <footer>

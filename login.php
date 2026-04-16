@@ -39,6 +39,27 @@
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password">
             </div>
+
+            <?php
+            if (isset($_GET["error"])) {
+                if ($_GET["error"] == "emptyfields") {
+                    echo "Please fill in all fields.<br>";
+                }
+            }
+
+            if (isset($_GET["error"])) {
+                if ($_GET["error"] == "shortpassword") {
+                    echo "Password must be at least 8 characters long.<br>";
+                }
+            }
+
+            if (isset($_GET["error"])) {
+                if ($_GET["error"] == "wrongdata") {
+                    echo "Wrong use email or password<br>";
+                }
+            }
+            ?>
+
             <div>
                 <button type="submit" name="login">LOGIN</button>
             </div>

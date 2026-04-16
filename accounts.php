@@ -30,15 +30,21 @@
     <main>
         <h1>Current accounts</h1>
         <?php
-            $lines = file("accounts.txt", FILE_IGNORE_NEW_LINES);
+        session_start();
 
-            foreach ($lines as $line) {
-                $data = explode(",", $line);
-                $username = $data[0];
+        if (!isset($_SESSION["isLoggedIn"]) || $_SESSION["isLoggedIn"] !== true) {
+            header("Location: login.php?error=pleaselogin");
+            exit();
+        }
 
-                echo "<p>$username</p>";
-            }
-        
+        $lines = file("accounts.txt", FILE_IGNORE_NEW_LINES);
+
+        foreach ($lines as $line) {
+            $data = explode(",", $line);
+            $username = $data[0];
+
+            echo "<p>$username</p>";
+        }
         ?>
     </main>
     <footer>

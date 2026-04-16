@@ -31,7 +31,43 @@
     <main>
         <h1>Admin</h1>
         <?php
-        //place code here
+            session_start();
+
+            $username = $_POST["username"];
+            $password = $_POST["password"];
+
+            if ($username == "" || $password == "") {
+                $_SESSION["isLoggedIn"] = false;
+                header("Location: login.php?error=emptyfields");
+                exit();
+            }
+
+            if (strlen($password) < 10) {
+                $_SESSION["isLoggedIn"] = false;
+                header("Location: login.php?error=shortpassword");
+                exit();
+            }
+
+            $lines = file("accounts.txt", FILE_IGNORE_NEW_LINES);
+            $isLoggedIn = false;
+
+            foreach ($lines as $line) {
+                $userData = explode(",", $line);
+                if ($userData[0] === $username && $userData[1] === $password) {
+                    $isLoggedIn = true;
+                    break;
+                }
+            }
+
+            if ($isLoggedIn) {
+                $_SESSION["isLoggedIn"] = true;
+                header("Location: accounts.php");
+                exit();
+            } else {
+                $_SESSION["isLoggedIn"] = false;
+                header("Location: login.php?error=wrongdata");
+                exit();
+            }
         ?>
     </main>
     <footer>

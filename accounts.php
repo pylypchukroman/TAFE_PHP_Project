@@ -46,6 +46,7 @@
             echo "<p>$username</p>";
         }
         ?>
+        <a class="logOutBtn" href="logout.php">Logout</a>
     </main>
     <footer>
         <p>Contact us</p>

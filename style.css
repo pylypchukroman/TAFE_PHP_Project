@@ -112,3 +112,10 @@ button
     border: 1px solid black;
     border-radius: 5px;
 }
+
+.disabled-link {
+    pointer-events: none;
+    text-decoration: none;
+    cursor: default;
+    display: none;
+}

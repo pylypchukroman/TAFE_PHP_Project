@@ -10,18 +10,9 @@
 <body>
     <header>
         <div id="headerContent">
-            
-            <nav>
-                <ul>
-                    <li class="menu">
-                        <a href="index.php">
-                            <img src="images/GE-icon.png" alt="Gelos Enterprises" width="47" height="55">
-                        </a>
-                    </li>
-                    <li class="menu"><a href="register.php">REGISTER</a></li>
-                    <li class="menu"><a href="login.php">LOGIN</a></li>
-                    <li class="menu"><a href="accounts.php">VIEW ACCOUNTS</a></li>
-            </nav>
+
+            <?php include 'nav.php'; ?>
+
         </div>
     </header>
     <section id="banner">
@@ -30,7 +21,6 @@
     <main>
         <h1>Current accounts</h1>
         <?php
-        session_start();
 
         if (!isset($_SESSION["isLoggedIn"]) || $_SESSION["isLoggedIn"] !== true) {
             header("Location: login.php?error=pleaselogin");
@@ -53,8 +43,8 @@
         <p>A: 111 Business Avenue, TULITZA NSW 9460<br>
         P: 02 0000 0000<br>
         E: contactus@gelosmail.com.au</p>
-    
-        <p>Gelos Enterprises would like to pay our respect and acknowledge Aboriginal and Torres Strait Islander Peoples as the Traditional Custodians of the land, rivers and sea. We acknowledge and pay our respect to the Elders, both past and present of all Nations.</p>				
+
+        <p>Gelos Enterprises would like to pay our respect and acknowledge Aboriginal and Torres Strait Islander Peoples as the Traditional Custodians of the land, rivers and sea. We acknowledge and pay our respect to the Elders, both past and present of all Nations.</p>
         <p>This site has been developed by TAFE NSW &copy TAFE NSW <?php echo date("Y") ?></p>
         <p >Please note this is a fictitious organisation and has been created purely for educational purposes only.</p>
     </footer>

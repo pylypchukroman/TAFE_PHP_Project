@@ -10,18 +10,9 @@
 <body>
     <header>
         <div id="headerContent">
-            
-            <nav>
-                <ul>
-                    <li class="menu">
-                        <a href="index.php">
-                            <img src="images/GE-icon.png" alt="Gelos Enterprises" width="47" height="55">
-                        </a>
-                    </li>
-                    <li class="menu"><a href="register.php">REGISTER</a></li>
-                    <li class="menu"><a href="login.php">LOGIN</a></li>
-                    <li class="menu"><a href="accounts.php">VIEW ACCOUNTS</a></li>
-            </nav>
+
+            <?php include 'nav.php'; ?>
+
         </div>
     </header>
     <section id="banner">

@@ -21,7 +21,7 @@
     <main>
         <h1>Admin</h1>
         <?php
-
+            require 'passwordValidation.php';
             $username = $_POST["username"];
             $password = $_POST["password"];
 
@@ -31,9 +31,9 @@
                 exit();
             }
 
-            if (strlen($password) < 10) {
+            if (!isValidPassword($password)) {
                 $_SESSION["isLoggedIn"] = false;
-                header("Location: login.php?error=shortpassword");
+                header("Location: login.php?error=incorrectpassword");
                 exit();
             }
 

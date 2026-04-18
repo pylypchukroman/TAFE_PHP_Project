@@ -39,8 +39,8 @@
             }
 
             if (isset($_GET["error"])) {
-                if ($_GET["error"] == "shortpassword") {
-                    echo "Password must be at least 8 characters long.<br>";
+                if ($_GET["error"] == "incorrectpassword") {
+                    echo "Password must be at least 10 characters long, include at least one number, and contain no spaces.<br>";
                 }
             }
 

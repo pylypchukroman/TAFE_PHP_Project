@@ -21,6 +21,7 @@
     <main>
         <h1>Create account</h1>
         <?php
+            require 'passwordValidation.php';
             $username = $_POST['username'];
             $password = $_POST['password'];
             $lines = file("accounts.txt");
@@ -38,8 +39,8 @@
                 exit();
             }
 
-            if (strlen($password) < 10) {
-                header("Location: register.php?error=shortpassword");
+            if (!isValidPassword($password)) {
+                header("Location: register.php?error=incorrectpassword");
                 exit();
             }
 

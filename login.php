@@ -32,20 +32,17 @@
 
             <?php
             if (isset($_GET["error"])) {
-                if ($_GET["error"] == "emptyfields") {
-                    echo "Please fill in all fields.<br>";
-                }
-            }
-
-            if (isset($_GET["error"])) {
-                if ($_GET["error"] == "incorrectpassword") {
-                    echo "Password must be at least 10 characters long, include at least one number, and contain no spaces.<br>";
-                }
-            }
-
-            if (isset($_GET["error"])) {
-                if ($_GET["error"] == "wrongdata") {
-                    echo "Wrong use email or password<br>";
+                $error = $_GET["error"];
+                switch ($error) {
+                    case "emptyinput":
+                        echo "Please fill in all fields.<br>";
+                        break;
+                    case "incorrectpassword":
+                        echo "Password must be at least 10 characters long, include at least one number, and contain no spaces.<br>";
+                        break;
+                    case "wrongdata":
+                        echo "Username or password is incorrect.<br>";
+                        break;
                 }
             }
             ?>

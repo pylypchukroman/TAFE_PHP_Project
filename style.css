@@ -119,3 +119,7 @@ button
     cursor: default;
     display: none;
 }
+.warningMsg {
+    color: red;
+    margin: 0;
+}

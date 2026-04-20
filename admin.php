@@ -10,9 +10,10 @@
 <body>
     <header>
         <div id="headerContent">
-
-            <?php include 'nav.php'; ?>
-
+            <?php
+                // Include navigation file
+                include 'nav.php';
+            ?>
         </div>
     </header>
     <section id="banner">
@@ -21,33 +22,51 @@
     <main>
         <h1>Admin</h1>
         <?php
+            // Include password validation file
             require 'passwordValidation.php';
+            // Get username and password from the login form
             $username = $_POST["username"];
             $password = $_POST["password"];
 
+            // Check if username or password fields are empty
             if ($username == "" || $password == "") {
                 $_SESSION["isLoggedIn"] = false;
                 header("Location: login.php?error=emptyfields");
                 exit();
             }
 
+            // Check if the password format is valid
             if (!isValidPassword($password)) {
                 $_SESSION["isLoggedIn"] = false;
                 header("Location: login.php?error=incorrectpassword");
                 exit();
             }
 
-            $lines = file("accounts.txt", FILE_IGNORE_NEW_LINES);
+            // Check if the accounts file exists
+            if (!file_exists("accounts.txt")) {
+                $_SESSION["isLoggedIn"] = false;
+                header("Location: login.php?error=filenotfound");
+                exit();
+            }
+
+            // Read all account records from the file
+            $accountRecords = file("accounts.txt", FILE_IGNORE_NEW_LINES);
+
+            // Set login status to false by default
             $isLoggedIn = false;
 
-            foreach ($lines as $line) {
-                $userData = explode(",", $line);
+            // Loop through each account record
+            foreach ($accountRecords as $accountRecord) {
+                // Split each record into username and password
+                $userData = explode(",", $accountRecord);
+
+                // Check if the entered details match the record
                 if ($userData[0] === $username && $userData[1] === $password) {
                     $isLoggedIn = true;
                     break;
                 }
             }
-
+            // Redirect user based on login result
             if ($isLoggedIn) {
                 $_SESSION["isLoggedIn"] = true;
                 header("Location: accounts.php");

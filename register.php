@@ -10,9 +10,10 @@
 <body>
     <header>
         <div id="headerContent">
-
-            <?php include 'nav.php'; ?>
-
+            <?php
+            // Include navigation file
+            include 'nav.php';
+            ?>
         </div>
     </header>
     <section id="banner">
@@ -32,20 +33,26 @@
             </div>
 
             <?php
-            if (isset($_GET["error"])) {
-                $error = $_GET["error"];
-                switch ($error) {
-                    case "emptyfields":
-                        echo "Please fill in all fields.<br>";
-                        break;
-                    case "incorrectpassword":
-                        echo "Password must be at least 10 characters long, include at least one number, and contain no spaces.<br>";
-                        break;
-                    case "userexist":
-                        echo "User with this email already exist.<br>";
-                        break;
+                // Check if there is an error in the URL
+                if (isset($_GET["error"])) {
+                    // Get the error value
+                    $error = $_GET["error"];
+
+                    // Show the correct error message
+                    switch ($error) {
+                        case "emptyfields":
+                            echo "<p class='warningMsg'>Please fill in all fields.</p><br>";
+                            break;
+
+                        case "incorrectpassword":
+                            echo "<p class='warningMsg'>Password must be at least 10 characters long, include at least one number, and contain no spaces.</p><br>";
+                            break;
+
+                        case "userexist":
+                            echo "<p class='warningMsg'>User with this email already exists.</p><br>";
+                            break;
+                    }
                 }
-            }
             ?>
 
             <div>

@@ -10,9 +10,10 @@
 <body>
     <header>
         <div id="headerContent">
-
-            <?php include 'nav.php'; ?>
-
+            <?php
+                // Include navigation file
+                include 'nav.php';
+            ?>
         </div>
     </header>
     <section id="banner">
@@ -21,34 +22,46 @@
     <main>
         <h1>Create account</h1>
         <?php
+            // Include the password validation file
             require 'passwordValidation.php';
             $username = $_POST['username'];
             $password = $_POST['password'];
-            $lines = file("accounts.txt");
+
+            // Check if the accounts file exists
+            if (!file_exists("accounts.txt")) {
+                header("Location: register.php?error=filenotfound");
+                exit();
+            }
+            $accountRecords = file("accounts.txt");
             $isUserExist = false;
 
-            foreach ($lines as $line) {
-                $userData = explode(",", $line);
-                if($userData[0] == $username) {
+            // Check if the username already exists
+            foreach ($accountRecords as $accountRecord) {
+                $userData = explode(",", $accountRecord);
+                if ($userData[0] == $username) {
                     $isUserExist = true;
                 }
             }
 
+            // Check if username or password fields are empty
             if ($username == "" || $password == "") {
                 header("Location: register.php?error=emptyfields");
                 exit();
             }
 
+            // Check if the password is valid
             if (!isValidPassword($password)) {
                 header("Location: register.php?error=incorrectpassword");
                 exit();
             }
 
+            // Redirect if the username already exists
             if ($isUserExist) {
                 header("Location: register.php?error=userexist");
                 exit();
             }
 
+            // Open the file and add new user data
             $file = fopen("accounts.txt", "a");
             fwrite($file, $username . "," . $password . "\n");
             fclose($file);

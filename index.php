@@ -10,9 +10,10 @@
 <body>
     <header>
         <div id="headerContent">
-
-            <?php include 'nav.php'; ?>
-
+            <?php
+            // Include navigation file
+            include 'nav.php';
+            ?>
         </div>
     </header>
     <section id="banner">

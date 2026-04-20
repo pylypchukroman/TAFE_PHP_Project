@@ -10,9 +10,10 @@
 <body>
     <header>
         <div id="headerContent">
-
-            <?php include 'nav.php'; ?>
-
+            <?php
+                // Include navigation file
+                include 'nav.php';
+            ?>
         </div>
     </header>
     <section id="banner">
@@ -21,20 +22,35 @@
     <main>
         <h1>Current accounts</h1>
         <?php
+            // Check if the user is logged in
+            if (!isset($_SESSION["isLoggedIn"]) || $_SESSION["isLoggedIn"] !== true) {
+                // Redirect user to login page if not logged in
+                header("Location: login.php?error=pleaselogin");
+                exit();
+            }
 
-        if (!isset($_SESSION["isLoggedIn"]) || $_SESSION["isLoggedIn"] !== true) {
-            header("Location: login.php?error=pleaselogin");
-            exit();
-        }
+            // Check if the accounts file exists
+            if (file_exists("accounts.txt")) {
 
-        $lines = file("accounts.txt", FILE_IGNORE_NEW_LINES);
+                // Read all account records from the text file
+                $accountRecords = file("accounts.txt", FILE_IGNORE_NEW_LINES);
 
-        foreach ($lines as $line) {
-            $data = explode(",", $line);
-            $username = $data[0];
+                // Loop through each account record
+                foreach ($accountRecords as $accountRecord) {
 
-            echo "<p>$username</p>";
-        }
+                    // Split the account record into separate values
+                    $userData = explode(",", $accountRecord);
+
+                    // Get the username from the record
+                    $username = $userData[0];
+
+                    // Display the username on the page
+                    echo "<p>$username</p>";
+                }
+            } else {
+                // Show message if the file cannot be found
+                echo "<p>Accounts file not found.</p>";
+            }
         ?>
         <a class="logOutBtn" href="logout.php">Logout</a>
     </main>

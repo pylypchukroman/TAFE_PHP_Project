@@ -1,7 +1,14 @@
 <?php
-session_start();
-session_unset();
-session_destroy();
+    // Start the session
+    session_start();
 
-header("Location: login.php");
+    // Remove all session variables
+    session_unset();
+
+    // Destroy the session completely
+    session_destroy();
+
+    // Redirect user to login page
+    header("Location: login.php");
 exit();
+

@@ -1,6 +1,7 @@
 <?php
-session_start();
-$isDisabled = !isset($_SESSION['isLoggedIn']) || $_SESSION['isLoggedIn'] !== true;
+    session_start();
+    // Disable element if the user is not logged in
+    $isDisabled = !isset($_SESSION['isLoggedIn']) || $_SESSION['isLoggedIn'] !== true;
 ?>
 
 <nav>

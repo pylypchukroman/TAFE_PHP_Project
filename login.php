@@ -10,9 +10,10 @@
 <body>
     <header>
         <div id="headerContent">
-
-            <?php include 'nav.php'; ?>
-
+            <?php
+            // Include navigation file
+            include 'nav.php';
+            ?>
         </div>
     </header>
     <section id="banner">
@@ -29,24 +30,28 @@
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password">
             </div>
-
             <?php
-            if (isset($_GET["error"])) {
-                $error = $_GET["error"];
-                switch ($error) {
-                    case "emptyinput":
-                        echo "Please fill in all fields.<br>";
-                        break;
-                    case "incorrectpassword":
-                        echo "Password must be at least 10 characters long, include at least one number, and contain no spaces.<br>";
-                        break;
-                    case "wrongdata":
-                        echo "Username or password is incorrect.<br>";
-                        break;
-                }
-            }
-            ?>
+                // Check if there is an error in the URL
+                if (isset($_GET["error"])) {
+                    // Get the error value from the URL
+                    $error = $_GET["error"];
 
+                    // Show a message based on the error type
+                    switch ($error) {
+                        case "emptyfields":
+                            echo "<p class='warningMsg'>Please fill in all fields.</p><br>";
+                            break;
+
+                        case "incorrectpassword":
+                            echo "<p class='warningMsg'>Password must be at least 10 characters long, include at least one number, and contain no spaces.</p><br>";
+                            break;
+
+                        case "wrongdata":
+                            echo "<p class='warningMsg'>Username or password is incorrect.</p><br>";
+                            break;
+                    }
+                }
+            ?>
             <div>
                 <button type="submit" name="login">LOGIN</button>
             </div>

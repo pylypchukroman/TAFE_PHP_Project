@@ -29,23 +29,9 @@
             $password = $_POST["password"];
 
             // Check if username or password fields are empty
-            if ($username == "" || $password == "") {
+            if (empty($username) || empty($password)) {
                 $_SESSION["isLoggedIn"] = false;
                 header("Location: login.php?error=emptyfields");
-                exit();
-            }
-
-            // Check if the password format is valid
-            if (!isValidPassword($password)) {
-                $_SESSION["isLoggedIn"] = false;
-                header("Location: login.php?error=incorrectpassword");
-                exit();
-            }
-
-            // Check if the accounts file exists
-            if (!file_exists("accounts.txt")) {
-                $_SESSION["isLoggedIn"] = false;
-                header("Location: login.php?error=filenotfound");
                 exit();
             }
 
@@ -73,7 +59,7 @@
                 exit();
             } else {
                 $_SESSION["isLoggedIn"] = false;
-                header("Location: login.php?error=wrongdata");
+                header("Location: login.php?error=wrongcredentials");
                 exit();
             }
         ?>

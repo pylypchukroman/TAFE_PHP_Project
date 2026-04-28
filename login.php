@@ -42,11 +42,7 @@
                             echo "<p class='warningMsg'>Please fill in all fields.</p><br>";
                             break;
 
-                        case "incorrectpassword":
-                            echo "<p class='warningMsg'>Password must be at least 10 characters long, include at least one number, and contain no spaces.</p><br>";
-                            break;
-
-                        case "wrongdata":
+                        case "wrongcredentials":
                             echo "<p class='warningMsg'>Username or password is incorrect.</p><br>";
                             break;
                     }

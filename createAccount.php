@@ -44,7 +44,7 @@
             }
 
             // Check if username or password fields are empty
-            if ($username == "" || $password == "") {
+            if (empty($username) || empty($password)) {
                 header("Location: register.php?error=emptyfields");
                 exit();
             }

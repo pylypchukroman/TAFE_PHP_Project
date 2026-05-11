@@ -21,6 +21,7 @@
     </section>
     <main>
         <h1>Current accounts</h1>
+<!--        <h3>Total number of users: --><?php //echo $accountRecordLength; ?><!--</h3>-->
         <?php
             // Check if the user is logged in
             if (!isset($_SESSION["isLoggedIn"]) || $_SESSION["isLoggedIn"] !== true) {
@@ -34,6 +35,8 @@
 
                 // Read all account records from the text file
                 $accountRecords = file("accounts.txt", FILE_IGNORE_NEW_LINES);
+                $accountRecordLength = count($accountRecords);
+                echo "<h3>Total number of users: $accountRecordLength</h3>";
 
                 // Loop through each account record
                 foreach ($accountRecords as $accountRecord) {

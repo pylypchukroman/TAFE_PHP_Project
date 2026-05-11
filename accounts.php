@@ -36,7 +36,7 @@
                 // Read all account records from the text file
                 $accountRecords = file("accounts.txt", FILE_IGNORE_NEW_LINES);
                 $accountRecordLength = count($accountRecords);
-                echo "<h3>Total number of users: $accountRecordLength</h3>";
+                echo "<h3>Total users: $accountRecordLength</h3>";
 
                 // Loop through each account record
                 foreach ($accountRecords as $accountRecord) {
